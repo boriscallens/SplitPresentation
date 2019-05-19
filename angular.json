@@ -29,7 +29,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": ["./node_modules/raphael/raphael.min.js"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["./node_modules/bootstrap/scss"]
+            },  
             "es5BrowserSupport": true
           },
           "configurations": {
