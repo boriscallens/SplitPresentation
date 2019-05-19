@@ -3,16 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CameraCaptureComponent } from './camera-capture/camera-capture.component';
+import { OcrModule } from './ocr/ocr.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CameraCaptureComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    OcrModule
   ],
   providers: [],
   bootstrap: [AppComponent]
