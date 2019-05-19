@@ -10,6 +10,7 @@ import { Bill } from '@shared/models/bill.model';
   providedIn: 'root'
 })
 export class OcrService {
+
   private _capture$ = new Subject<Capture>();
   private _ticket$ = new Subject<Ticket>();
   private _bill$ = new Subject<Bill>();
@@ -24,5 +25,11 @@ export class OcrService {
     return this._bill$.asObservable().pipe(filter(bill => !!bill));
   }
 
-  constructor() { }
+  constructor() { 
+    this.capture$.subscribe(x => console.log(x));
+  }
+
+  SelectFile(file: File) {
+    this._capture$.next({File: file});
+  }
 }

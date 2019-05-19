@@ -1,3 +1,3 @@
 export class Capture {
-    Source: string;
+    File: File;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-capture-browser',
@@ -6,18 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./capture-browser.component.sass']
 })
 export class CaptureBrowserComponent implements OnInit {
+  captureBrowserInput: HTMLInputElement;
 
-  // @Output
-
+  @Output() FileLoaded = new EventEmitter<File>();
 
   constructor() { }
 
   ngOnInit() {
-    var input = document.querySelector('#captureBrowserInput');
-    input.addEventListener('change', this.updateImageDisplay);
+    this.captureBrowserInput = document.querySelector('#captureBrowserInput');
   }
 
-  private updateImageDisplay(event: Event) {
-    console.log('boerderij', event);
+  public updateImageDisplay() {
+    var file = this.captureBrowserInput.files[0];
+    this.FileLoaded.emit(file);
   }
 }

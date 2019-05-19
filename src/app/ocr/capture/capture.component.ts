@@ -23,4 +23,8 @@ export class CaptureComponent implements OnInit {
   ngOnInit() {
 
   }
+
+  onFileLoaded(file: File){
+    this.ocrService.SelectFile(file)
+  }
 }
