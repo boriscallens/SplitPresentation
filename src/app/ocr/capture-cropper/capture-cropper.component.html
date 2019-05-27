@@ -1,1 +1,3 @@
-Take a picture of your ticket or browse for one you saved earlier
+
+<span *ngIf="!captureDataURL">Take a picture of your ticket or browse for one you saved earlier</span>
+<img *ngIf="captureDataURL" [src]="captureDataURL">

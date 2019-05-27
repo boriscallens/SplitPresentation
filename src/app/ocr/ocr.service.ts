@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, shareReplay } from 'rxjs/operators';
 
 import { Capture } from '@shared/models/capture.model';
 import { Ticket } from '@shared/models/ticket.model';
@@ -16,7 +16,7 @@ export class OcrService {
   private _bill$ = new Subject<Bill>();
 
   public get capture$(): Observable<Capture> {
-    return this._capture$.asObservable().pipe(filter(capture => !!capture));
+    return this._capture$.asObservable().pipe(filter(capture => !!capture), shareReplay(1));
   }
   public get ticket$(): Observable<Ticket> {
     return this._ticket$.asObservable().pipe(filter(ticket => !!ticket));
@@ -26,7 +26,7 @@ export class OcrService {
   }
 
   constructor() { 
-    this.capture$.subscribe(x => console.log(x));
+    this.capture$.subscribe(x => console.log("ocrService", x));
   }
 
   SelectFile(file: File) {
