@@ -1,5 +1,5 @@
-<app-capture-camera>camera capture</app-capture-camera>
-<div>_camera not available message</div>
-
-<app-capture-browser (FileLoaded)="onFileLoaded($event)">upload functionality</app-capture-browser>
-<app-capture-cropper *ngIf="this.capture$ | async; let capture;" [capture]="capture"></app-capture-cropper>
+<div class="capture">
+    <app-capture-camera (FileLoaded)="onFileLoaded($event)">camera capture</app-capture-camera>
+    <app-capture-browser class="capture-browser" (FileLoaded)="onFileLoaded($event)">upload functionality</app-capture-browser>
+    <app-capture-cropper class="capture-cropper" *ngIf="this.capture$ | async; let capture;" [capture]="capture"></app-capture-cropper>
+</div>

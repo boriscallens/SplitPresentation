@@ -1,3 +1,8 @@
-<div class="camera">
-    <video id="video">Video stream not available.</video>
-</div>
+<span *ngIf="!(cameraStream | async); else cameraAvailable">video not available</span>
+
+<ng-template #cameraAvailable>
+    <svg class="video-overlay">
+        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="none" />
+    </svg>
+    <video id="video"></video>
+</ng-template>

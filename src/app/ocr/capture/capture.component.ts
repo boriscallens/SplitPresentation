@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { OcrService } from '../ocr.service';
-// import { isDevMode } from '@angular/core';
 
 /*
  * Smart component to handle capturing the image of a bill
@@ -24,5 +23,8 @@ export class CaptureComponent implements OnInit {
 
   onFileLoaded(file: File){
     this.ocrService.SelectFile(file);
+  }
+  onCameraSnapped(){
+    console.log('snapped');
   }
 }

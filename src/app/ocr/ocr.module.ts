@@ -6,7 +6,12 @@ import { CaptureBrowserComponent } from './capture-browser/capture-browser.compo
 import { CaptureCameraComponent } from './capture-camera/capture-camera.component';
 
 @NgModule({
-  declarations: [CaptureComponent, CaptureCropperComponent, CaptureBrowserComponent, CaptureCameraComponent],
+  declarations: [
+    CaptureComponent,
+    CaptureCropperComponent,
+    CaptureBrowserComponent,
+    CaptureCameraComponent
+  ],
   imports: [
     CommonModule
   ]
