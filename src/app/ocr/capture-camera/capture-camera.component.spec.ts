@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CaptureCameraComponent } from './capture-camera.component';
+import { OcrModule } from '../ocr.module';
 
 describe('CaptureCameraComponent', () => {
   let component: CaptureCameraComponent;
@@ -8,7 +9,9 @@ describe('CaptureCameraComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CaptureCameraComponent ]
+      imports: [
+        OcrModule
+      ],
     })
     .compileComponents();
   }));

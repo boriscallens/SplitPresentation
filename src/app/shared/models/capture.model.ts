@@ -1,3 +1,3 @@
-export class Capture {
+export interface ICapture {
     File: File;
 }
