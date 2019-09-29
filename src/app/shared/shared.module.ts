@@ -5,9 +5,13 @@ import { Capture } from './models/capture.model';
 import { Bill } from './models/bill.model';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule
+  ],
+  declarations: [
+    Capture,
+    Ticket,
+    Bill
   ],
   exports: [
     Capture,
