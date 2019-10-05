@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { Observable, Subject } from "rxjs";
-import { filter, shareReplay } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { filter, shareReplay } from 'rxjs/operators';
 
-import { Bill } from "@shared/models/bill.model";
-import { ICapture } from "@shared/models/capture.model";
-import { Ticket } from "@shared/models/ticket.model";
+import { Bill } from '@shared/models/bill.model';
+import { ICapture } from '@shared/models/capture.model';
+import { Ticket } from '@shared/models/ticket.model';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class OcrService {
 
@@ -26,7 +26,7 @@ export class OcrService {
   }
 
   constructor() {
-    this.capture$.subscribe((x) => console.log("ocrService", x));
+    this.capture$.subscribe((x) => console.log('ocrService', x));
   }
 
   public SelectFile(file: File) {

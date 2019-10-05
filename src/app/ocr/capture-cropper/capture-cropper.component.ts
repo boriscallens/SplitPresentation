@@ -1,17 +1,17 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
-import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
-import { ICapture } from "@shared/models/capture.model";
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ICapture } from '@shared/models/capture.model';
 
 @Component({
-  selector: "app-capture-cropper",
-  styleUrls: ["./capture-cropper.component.sass"],
-  templateUrl: "./capture-cropper.component.html",
+  selector: 'app-capture-cropper',
+  styleUrls: ['./capture-cropper.component.sass'],
+  templateUrl: './capture-cropper.component.html',
 })
 export class CaptureCropperComponent implements OnInit, AfterViewInit {
   @Input()
   public capture: ICapture;
 
-  @ViewChild("cropperCanvas", {static: false})
+  @ViewChild('cropperCanvas', {static: false})
   public cropperCanvas: ElementRef;
 
   public captureDataURL: SafeResourceUrl;
@@ -30,15 +30,15 @@ export class CaptureCropperComponent implements OnInit, AfterViewInit {
 
       canvas.width = img.naturalWidth;
       canvas.height = img.naturalHeight;
-      canvas.getContext("2d").drawImage(img, 0, 0);
+      canvas.getContext('2d').drawImage(img, 0, 0);
     };
   }
 
   private ReadCaptureFile() {
     const reader = new FileReader();
-    reader.addEventListener("loadend", (e) => this.captureDataURL =
+    reader.addEventListener('loadend', (e) => this.captureDataURL =
       this.sanitizer.bypassSecurityTrustResourceUrl((e.target as FileReader).result as string));
-    reader.addEventListener("loadend", (e) => this.image.src = (e.target as FileReader).result as string);
+    reader.addEventListener('loadend', (e) => this.image.src = (e.target as FileReader).result as string);
     reader.readAsDataURL(this.capture.File);
   }
 }

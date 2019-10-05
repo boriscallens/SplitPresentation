@@ -1,8 +1,6 @@
 # SplitPresentation
 
-Frontend for making paying a night out with friends easy
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
 
 ## Development server
 

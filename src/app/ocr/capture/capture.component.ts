@@ -15,16 +15,16 @@ import { OcrService } from '../ocr.service';
 })
 export class CaptureComponent implements OnInit {
 
-  public capture$ = this.ocrService.capture$
+  public capture$ = this.ocrService.capture$;
 
   constructor(private ocrService: OcrService) { }
 
   ngOnInit() { }
 
-  onFileLoaded(file: File){
+  onFileLoaded(file: File) {
     this.ocrService.SelectFile(file);
   }
-  onCameraSnapped(){
+  onCameraSnapped() {
     console.log('snapped');
   }
 }

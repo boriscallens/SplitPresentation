@@ -17,7 +17,7 @@ export class CaptureBrowserComponent implements OnInit {
   }
 
   public updateImageDisplay() {
-    var file = this.captureBrowserInput.files[0];
+    const file = this.captureBrowserInput.files[0];
     this.FileLoaded.emit(file);
   }
 }

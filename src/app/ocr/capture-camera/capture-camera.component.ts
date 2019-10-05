@@ -11,8 +11,8 @@ export class CaptureCameraComponent implements OnInit {
   @Output() CameraAvailable = new EventEmitter<boolean>();
   @Output() Camera: Observable<MediaStreamTrack>;
 
-  public cameraStream : Observable<MediaStream>;
-  
+  public cameraStream: Observable<MediaStream>;
+
   constructor() { }
 
   ngOnInit() {
@@ -23,10 +23,10 @@ export class CaptureCameraComponent implements OnInit {
     //   map((mediaStream) => this.processStream(mediaStream)),
     //   // map((mediaStream) => mediaStream.getVideoTracks()[0]),
     // );
-    
+
     //  = cameraStream.pipe(map(stream => stream));
-    
-    //this.cameraStream.subscribe((stream) => this.processStream(stream));
+
+    // this.cameraStream.subscribe((stream) => this.processStream(stream));
     //   (error) => this.CameraAvailable.emit(false)
     // );
 
@@ -35,7 +35,7 @@ export class CaptureCameraComponent implements OnInit {
     //   .then(this.processStream)
     //   .catch((err) => {
     //     // switch (err.constructor){
-    //     //   default: 
+    //     //   default:
     //     // }
     //     this.CameraAvailable.emit(false);
     //   });
@@ -46,7 +46,7 @@ export class CaptureCameraComponent implements OnInit {
     video.srcObject = mediaStream;
     video.onloadedmetadata = () => video.play();
   }
-  handleNotAllowedOrRethrow(error: Error){
+  handleNotAllowedOrRethrow(error: Error) {
     // this.CameraAvailable.emit(false);
     return of();
   }
