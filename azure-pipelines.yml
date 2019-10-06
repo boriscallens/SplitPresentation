@@ -15,10 +15,22 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
+- task: RestoreCache@0
+  inputs:
+    key: |
+      package-lock.json
+    path: node_modules
+
 - script: |
     npm install -g @angular/cli
     npm install
   displayName: 'npm install'
+
+- task: SaveCache@0
+  inputs:
+    key: |
+      package-lock.json
+    path: node_modules
 
 - script: |
     ng build --prod
