@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { from, of, Observable } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-capture-camera',
@@ -17,28 +17,8 @@ export class CaptureCameraComponent implements OnInit {
 
   ngOnInit() {
     const constraints = { video: { facingMode: 'environment' }, fake: true };
-    this.cameraStream = from(navigator.mediaDevices.getUserMedia(constraints));
-    this.cameraStream.pipe(tap(x => console.log('boerderij', x)));
-    // let stuff = from(navigator.mediaDevices.getUserMedia(constraints)).pipe(
-    //   map((mediaStream) => this.processStream(mediaStream)),
-    //   // map((mediaStream) => mediaStream.getVideoTracks()[0]),
-    // );
-
-    //  = cameraStream.pipe(map(stream => stream));
-
-    // this.cameraStream.subscribe((stream) => this.processStream(stream));
-    //   (error) => this.CameraAvailable.emit(false)
-    // );
-
-    // navigator.mediaDevices.getUserMedia(constraints)
-    //   .then(x => {this.CameraAvailable.emit(true); return x})
-    //   .then(this.processStream)
-    //   .catch((err) => {
-    //     // switch (err.constructor){
-    //     //   default:
-    //     // }
-    //     this.CameraAvailable.emit(false);
-    //   });
+    this.cameraStream = from(navigator.mediaDevices.getUserMedia(constraints))
+      .pipe(catchError(() => of<MediaStream>()));
   }
 
   processStream(mediaStream: MediaStream) {
@@ -47,7 +27,6 @@ export class CaptureCameraComponent implements OnInit {
     video.onloadedmetadata = () => video.play();
   }
   handleNotAllowedOrRethrow(error: Error) {
-    // this.CameraAvailable.emit(false);
     return of();
   }
 }
