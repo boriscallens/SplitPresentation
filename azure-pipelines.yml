@@ -15,22 +15,22 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- task: RestoreCache@0
+- task: RestoreCache@1
   inputs:
-    key: |
-      package-lock.json
-    path: node_modules
+    keyfile: '**/package-lock.json'
+    targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
+    vstsFeed: '5c394d1-c9cb-4883-a5c3-0c9c24a8ecef'
 
 - script: |
     npm install -g @angular/cli
     npm install
   displayName: 'npm install'
 
-- task: SaveCache@0
+- task: SaveCache@1
   inputs:
-    key: |
-      package-lock.json
-    path: node_modules
+    keyfile: '**/package-lock.json'
+    targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
+    vstsFeed: '5c394d1-c9cb-4883-a5c3-0c9c24a8ecef'
 
 - script: |
     ng build --prod
