@@ -10,6 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
@@ -19,7 +20,7 @@ steps:
   inputs:
     keyfile: '**/package-lock.json'
     targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
-    vstsFeed: '5c394d1-c9cb-4883-a5c3-0c9c24a8ecef'
+    vstsFeed: '75c394d1-c9cb-4883-a5c3-0c9c24a8ecef'
 
 - script: |
     npm install -g @angular/cli
@@ -30,7 +31,7 @@ steps:
   inputs:
     keyfile: '**/package-lock.json'
     targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
-    vstsFeed: '5c394d1-c9cb-4883-a5c3-0c9c24a8ecef'
+    vstsFeed: '75c394d1-c9cb-4883-a5c3-0c9c24a8ecef'
 
 - script: |
     ng build --prod
