@@ -32,7 +32,7 @@ steps:
   condition: succeededOrFailed()
   inputs:
     testRunner: JUnit
-    testResultsFiles: '**/TEST-RESULTS.xml'
+    testResultsFiles: '**/TESTS-*.xml'
 
 - task: PublishCodeCoverageResults@1
   inputs:

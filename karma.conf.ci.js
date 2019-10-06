@@ -20,11 +20,14 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, './coverage/split-presentation'),
-      reports: ['html', 'lcovonly', 'text-summary', 'cobertura'],
+      dir: require('path').join(__dirname, './coverage/'),
+      reports: ['cobertura'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'junit'],
+    junitReporter: {
+      outputDir: require('path').join(__dirname, './test/'),
+    },
+    reporters: ['progress', 'junit', 'coverage-istanbul'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
