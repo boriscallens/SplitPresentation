@@ -15,7 +15,7 @@ steps:
   inputs:
     keyfile: '**/package-lock.json'
     targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
-    vstsFeed: $(CacheFeed)
+    vstsFeed: '75c394d1-c9cb-4883-a5c3-0c9c24a8ecef'
 
 - task: NodeTool@0
   inputs:
@@ -31,7 +31,7 @@ steps:
   inputs:
     keyfile: '**/package-lock.json'
     targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
-    vstsFeed: $(CacheFeed)
+    vstsFeed: '75c394d1-c9cb-4883-a5c3-0c9c24a8ecef'
 
 - script: |
     ng build --prod
