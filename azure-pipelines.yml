@@ -24,38 +24,38 @@ steps:
 
 - script: |
     npm install -g @angular/cli
-#   npm install
+    npm install
   displayName: 'npm install'
 
 - script: |
     ng build --prod
   displayName: 'ng build'
 
-# - script: |
-#     ng test --karmaConfig=karma.conf.ci.js
-#   displayName: 'ng test'
+- script: |
+    ng test --karmaConfig=karma.conf.ci.js
+  displayName: 'ng test'
 
-# - task: PublishTestResults@2
-#   condition: succeededOrFailed()
-#   inputs:
-#     testRunner: JUnit
-#     testResultsFiles: '**/TESTS-*.xml'
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testRunner: JUnit
+    testResultsFiles: '**/TESTS-*.xml'
 
-# - task: PublishCodeCoverageResults@1
-#   inputs:
-#     codeCoverageTool: Cobertura
-#     summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
-#     reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
 
-# - publish: $(System.DefaultWorkingDirectory)/dist/split-presentation
-#   artifact: SplitPresentation
+- publish: $(System.DefaultWorkingDirectory)/dist/split-presentation
+  artifact: SplitPresentation
 
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'Visual Studio Premium met MSDN (0aa56bfa-1e8b-4502-ab0b-44e7823d2b37)'
     scriptType: 'pscore'
     scriptLocation: 'inlineScript'
-    workingDirectory: 
+    failOnStandardError: true
     inlineScript: |
       az storage blob upload-batch --source './dist/split-presentation' --destination '$web' --account-name 'splitpresentation'
   displayName: 'upload to az storage'
