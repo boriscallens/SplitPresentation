@@ -56,5 +56,5 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      az storage blob upload-batch --source $(System.DefaultWorkingDirectory)\dist\split-presentation\ --destination web --account-name 'splitpresentation'
+      az storage blob upload-batch --source '$(System.DefaultWorkingDirectory)\dist\split-presentation\' --destination web --account-name 'splitpresentation'
   displayName: 'upload to az storage'
