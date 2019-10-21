@@ -50,20 +50,27 @@ steps:
 - publish: $(System.DefaultWorkingDirectory)/dist/split-presentation
   artifact: SplitPresentation
 
-- task: AzureFileCopy@3
-  inputs:
-    sourcePath: '(System.DefaultWorkingDirectory)/dist/split-presentation/**'
-    azureSubscription: 'Visual Studio Premium met MSDN (0aa56bfa-1e8b-4502-ab0b-44e7823d2b37)'
-    destination: 'azureBlob'
-    storage: 'splitpresentation'
-    containerName: '$web'
-
-# - task: AzureCLI@2
+# - task: AzureFileCopy@3
 #   inputs:
+#     sourcePath: '(System.DefaultWorkingDirectory)/dist/split-presentation/**'
 #     azureSubscription: 'Visual Studio Premium met MSDN (0aa56bfa-1e8b-4502-ab0b-44e7823d2b37)'
-#     scriptType: 'bash'
-#     scriptLocation: 'inlineScript'
-#     workingDirectory: 
-#     inlineScript: |
-#       az storage blob upload-batch --source '**/dist/split-presentation' --destination web --account-name 'splitpresentation'
-#   displayName: 'upload to az storage'
+#     destination: 'azureBlob'
+#     storage: 'splitpresentation'
+#     containerName: '$web'
+
+# - task: CopyFiles@2
+#   inputs:
+#     SourceFolder: $(System.DefaultWorkingDirectory)/dist/split-presentation
+#     Contents: '**'
+#     TargetFolder: $(System.DefaultWorkingDirectory)
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Visual Studio Premium met MSDN (0aa56bfa-1e8b-4502-ab0b-44e7823d2b37)'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    workingDirectory: 
+    inlineScript: |
+      ls
+      az storage blob upload-batch --source '**/dist/split-presentation' --destination web --account-name 'splitpresentation'
+  displayName: 'upload to az storage'
