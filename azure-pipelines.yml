@@ -31,38 +31,24 @@ steps:
     ng build --prod
   displayName: 'ng build'
 
-- script: |
-    ng test --karmaConfig=karma.conf.ci.js
-  displayName: 'ng test'
+# - script: |
+#     ng test --karmaConfig=karma.conf.ci.js
+#   displayName: 'ng test'
 
-- task: PublishTestResults@2
-  condition: succeededOrFailed()
-  inputs:
-    testRunner: JUnit
-    testResultsFiles: '**/TESTS-*.xml'
-
-- task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: Cobertura
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
-    reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
-
-- publish: $(System.DefaultWorkingDirectory)/dist/split-presentation
-  artifact: SplitPresentation
-
-# - task: AzureFileCopy@3
+# - task: PublishTestResults@2
+#   condition: succeededOrFailed()
 #   inputs:
-#     sourcePath: '(System.DefaultWorkingDirectory)/dist/split-presentation/**'
-#     azureSubscription: 'Visual Studio Premium met MSDN (0aa56bfa-1e8b-4502-ab0b-44e7823d2b37)'
-#     destination: 'azureBlob'
-#     storage: 'splitpresentation'
-#     containerName: '$web'
+#     testRunner: JUnit
+#     testResultsFiles: '**/TESTS-*.xml'
 
-# - task: CopyFiles@2
+# - task: PublishCodeCoverageResults@1
 #   inputs:
-#     SourceFolder: $(System.DefaultWorkingDirectory)/dist/split-presentation
-#     Contents: '**'
-#     TargetFolder: $(System.DefaultWorkingDirectory)
+#     codeCoverageTool: Cobertura
+#     summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
+#     reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+
+# - publish: $(System.DefaultWorkingDirectory)/dist/split-presentation
+#   artifact: SplitPresentation
 
 - task: AzureCLI@2
   inputs:
@@ -71,7 +57,12 @@ steps:
     scriptLocation: 'inlineScript'
     workingDirectory: 
     inlineScript: |
-      cd /dist
       ls
+      cd dist
+      ls
+      cd split-presentation
+      ls
+      cd ..
+      cd ..
       az storage blob upload-batch --source '/dist/split-presentation' --destination web --account-name 'splitpresentation'
   displayName: 'upload to az storage'
