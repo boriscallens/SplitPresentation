@@ -55,6 +55,7 @@ steps:
     azureSubscription: 'Visual Studio Premium met MSDN (0aa56bfa-1e8b-4502-ab0b-44e7823d2b37)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
+    workingDirectory: 
     inlineScript: |
-      az storage blob upload-batch --source '$(System.DefaultWorkingDirectory)\**\dist\split-presentation\' --destination web --account-name 'splitpresentation'
+      az storage blob upload-batch --source '**/dist/split-presentation' --destination web --account-name 'splitpresentation'
   displayName: 'upload to az storage'
