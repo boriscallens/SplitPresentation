@@ -57,12 +57,5 @@ steps:
     scriptLocation: 'inlineScript'
     workingDirectory: 
     inlineScript: |
-      # ls
-      # cd dist
-      # ls
-      # cd split-presentation
-      # ls
-      # cd ..
-      # cd ..
-      az storage blob upload-batch --source './dist/split-presentation' --destination web --account-name 'splitpresentation'
+      az storage blob upload-batch --source './dist/split-presentation' --destination '$web' --account-name 'splitpresentation'
   displayName: 'upload to az storage'
