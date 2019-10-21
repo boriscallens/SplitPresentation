@@ -24,7 +24,7 @@ steps:
 
 - script: |
     npm install -g @angular/cli
-    npm install
+#   npm install
   displayName: 'npm install'
 
 - script: |
@@ -57,12 +57,12 @@ steps:
     scriptLocation: 'inlineScript'
     workingDirectory: 
     inlineScript: |
-      ls
-      cd dist
-      ls
-      cd split-presentation
-      ls
-      cd ..
-      cd ..
-      az storage blob upload-batch --source '/dist/split-presentation' --destination web --account-name 'splitpresentation'
+      # ls
+      # cd dist
+      # ls
+      # cd split-presentation
+      # ls
+      # cd ..
+      # cd ..
+      az storage blob upload-batch --source './dist/split-presentation' --destination web --account-name 'splitpresentation'
   displayName: 'upload to az storage'
