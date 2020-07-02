@@ -12,7 +12,7 @@ export class CaptureCameraComponent implements OnInit, AfterViewInit {
   @Output() CameraAvailable = new EventEmitter<boolean>();
   @Output() Camera: Observable<MediaStreamTrack>;
 
-  @ViewChild('video', {static: false}) video: ElementRef;
+  @ViewChild('video') video: ElementRef;
 
   public cameraStream: Observable<MediaStream>;
 

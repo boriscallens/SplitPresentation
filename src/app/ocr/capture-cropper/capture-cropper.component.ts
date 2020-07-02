@@ -11,7 +11,7 @@ export class CaptureCropperComponent implements OnInit, AfterViewInit {
   @Input()
   public capture: ICapture;
 
-  @ViewChild('cropperCanvas', {static: false})
+  @ViewChild('cropperCanvas')
   public cropperCanvas: ElementRef;
 
   public captureDataURL: SafeResourceUrl;
@@ -24,7 +24,7 @@ export class CaptureCropperComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.image.onloadend = (e) => {
+    this.image.onload = (e) => {
       const canvas = ( this.cropperCanvas.nativeElement as HTMLCanvasElement);
       const img = e.target as HTMLImageElement;
 
