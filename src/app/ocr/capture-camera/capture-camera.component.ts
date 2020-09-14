@@ -1,13 +1,12 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, AfterViewInit, Directive, ElementRef } from '@angular/core';
-import { from, of, Observable, } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-capture-camera',
   templateUrl: './capture-camera.component.html',
   styleUrls: ['./capture-camera.component.sass']
 })
-export class CaptureCameraComponent implements OnInit, AfterViewInit {
+export class CaptureCameraComponent implements OnInit {
 
   @Output() CameraAvailable = new EventEmitter<boolean>();
   @Output() Camera: Observable<MediaStreamTrack>;
@@ -19,18 +18,14 @@ export class CaptureCameraComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit() {
-    const constraints = { video: { facingMode: 'environment' }, fake: true };
+    const constraints = { video: { facingMode: 'environment' }, audio: false};
 
-    this.cameraStream = from(navigator.mediaDevices.getUserMedia(constraints))
-      .pipe(catchError(() => of<MediaStream>()));
-  }
-
-  ngAfterViewInit(): void {
-    this.cameraStream.subscribe(stream => this.processStream(stream));
+    navigator.mediaDevices.getUserMedia(constraints)
+    .then((stream) => this.processStream(stream))
+    .catch((error => console.error('could not request camera', error)));
   }
 
   processStream(mediaStream: MediaStream) {
-    console.log('x');
     this.video.nativeElement.srcObject = mediaStream;
     this.video.nativeElement.onloadedmetadata = () => this.video.nativeElement.play();
   }
