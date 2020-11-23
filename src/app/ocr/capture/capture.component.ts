@@ -11,7 +11,7 @@ import { OcrService } from '../ocr.service';
 @Component({
   selector: 'app-capture',
   templateUrl: './capture.component.html',
-  styleUrls: ['./capture.component.sass']
+  styleUrls: ['./capture.component.scss']
 })
 export class CaptureComponent implements OnInit {
 
